@@ -1,18 +1,33 @@
-import { ContactList } from './ContactList/ContactList';
-import { ContactForm } from './ContactForm/ContactForm';
-import { Filter } from './Filter/Filter';
 import { Route, Routes } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
+import {
+  ContactForm,
+  ContactList,
+  Filter,
+  Loader,
+  Navigation,
+  UserMenu,
+} from './index';
+
+const LoginPage = lazy(() => import('pages/LoginPage'));
+const ContactsPage = lazy(() => import('pages/ContactsPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage'));
 
 export const App = () => {
   return (
     <div>
       <header>
-        <Routes>
-          <Route path='/register' element={ } />
-          <Route path='/login' element={ }/>
-          <Route path='/contacts' element={ }/>
-        </Routes>
+        <Navigation />
+        <UserMenu />
       </header>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="*" element={<RegisterPage />} />
+        </Routes>
+      </Suspense>
       <h1>Phonebook</h1>
       <ContactForm />
 
