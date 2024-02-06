@@ -1,39 +1,53 @@
 import { Route, Routes } from 'react-router-dom';
-import { Suspense, lazy } from 'react';
-import {
-  ContactForm,
-  ContactList,
-  Filter,
-  Loader,
-  Navigation,
-  UserMenu,
-} from './index';
+import { lazy, useEffect } from 'react';
+
+import { SharedLayout } from './SharedLayout/SharedLayout';
+import HomePage from 'pages/HomePage';
+import { useDispatch } from 'react-redux';
+import { apiRefreshUser } from '../redux/auth/authSlice';
+import { PrivateRoute, RestrictedRoute } from './index';
 
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const ContactsPage = lazy(() => import('pages/ContactsPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 
 export const App = () => {
-  return (
-    <div>
-      <header>
-        <Navigation />
-        <UserMenu />
-      </header>
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/contacts" element={<ContactsPage />} />
-          <Route path="*" element={<RegisterPage />} />
-        </Routes>
-      </Suspense>
-      <h1>Phonebook</h1>
-      <ContactForm />
+  const dispatch = useDispatch();
 
-      <h2>Contacts</h2>
-      <Filter />
-      <ContactList />
-    </div>
+  useEffect(() => {
+    dispatch(apiRefreshUser());
+  }, [dispatch]);
+
+  return (
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<HomePage />} />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute>
+              <RegisterPage />
+            </RestrictedRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute>
+              <LoginPage />
+            </RestrictedRoute>
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute>
+              <ContactsPage />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<HomePage />} />
+      </Route>
+    </Routes>
   );
 };

@@ -4,3 +4,5 @@ export { Filter } from './Filter/Filter';
 export { UserMenu } from './UserMenu/UserMenu';
 export { Navigation } from './Navigation/Navigation';
 export { Loader } from './Loader/Loader';
+export { RestrictedRoute } from './RestrictedRoute/RestrictedRoute';
+export { PrivateRoute } from './PrivateRoute/PrivateRoute';

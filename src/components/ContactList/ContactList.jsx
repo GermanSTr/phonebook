@@ -4,13 +4,22 @@ import { ContactListItem } from './ContactListItem';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectContacts, selectFilter } from '../../redux/selector';
+import {
+  selectContacts,
+  selectContactsError,
+  selectContactsIsLoading,
+  selectFilter,
+} from '../../redux/contacts.selector';
 import { apiGetContact } from '../../redux/contactsSlice';
+import { Loader } from 'components';
 
 const ContactList = () => {
   const contacts = useSelector(selectContacts);
   const state = useSelector(selectFilter);
+  const isLoading = useSelector(selectContactsIsLoading);
+  const error = useSelector(selectContactsError);
   const dispatch = useDispatch();
+  console.log(contacts);
 
   useEffect(() => {
     dispatch(apiGetContact());
@@ -21,16 +30,21 @@ const ContactList = () => {
   );
 
   return (
-    <ul>
-      {filterContacts.map(contact => (
-        <ContactListItem
-          name={contact.name}
-          phone={contact.phone}
-          key={contact.id}
-          id={contact.id}
-        />
-      ))}
-    </ul>
+    <>
+      {isLoading && <Loader />}
+      {error && 'Sorry, I don`t have information'}
+      <ul>
+        {Array.isArray(contacts) &&
+          filterContacts.map(contact => (
+            <ContactListItem
+              name={contact.name}
+              phone={contact.phone}
+              key={contact.id}
+              id={contact.id}
+            />
+          ))}
+      </ul>
+    </>
   );
 };
 
