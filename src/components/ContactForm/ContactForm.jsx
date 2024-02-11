@@ -11,8 +11,8 @@ export const ContactForm = () => {
   const handleFormSubmit = evt => {
     evt.preventDefault();
     const name = evt.currentTarget.elements.name.value;
-    const numder = evt.currentTarget.elements.numder.value;
-    const formData = { name, numder };
+    const number = evt.currentTarget.elements.number.value;
+    const formData = { name, number };
     handleAddName(formData);
     evt.currentTarget.reset();
   };
@@ -36,7 +36,7 @@ export const ContactForm = () => {
       </label>
       <label className={css.formLabel}>
         <span className={css.formSpan}>Number</span>
-        <input type="text" name="numder" className={css.formInput} required />
+        <input type="text" name="number" className={css.formInput} required />
       </label>
       <button type="submit" className={css.formButton}>
         Add Contact

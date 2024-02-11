@@ -16,6 +16,7 @@ export const apiGetContact = createAsyncThunk(
 export const apiAddContact = createAsyncThunk(
   'contacts/addContact',
   async (contactData, thunkApi) => {
+    console.log(contactData);
     try {
       const { data } = await $authInstance.post('/contacts', contactData);
       return data;
