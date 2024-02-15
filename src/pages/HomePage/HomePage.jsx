@@ -1,8 +1,8 @@
-import React from 'react';
+import css from './HomePage.module.css';
 
 const HomePage = () => {
   return (
-    <div>
+    <div className={css.card}>
       <h1>WELCOME</h1>
       <p>
         Dear user, welcome to this page. You have a great opportunity to create

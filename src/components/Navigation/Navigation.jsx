@@ -8,14 +8,16 @@ export const Navigation = () => {
   return (
     <div>
       <NavLink to="/">Home</NavLink>
-      {isLoggedIn ? (
-        <NavLink to="/contacts">Contacts</NavLink>
-      ) : (
-        <>
-          <NavLink to="/register">Register</NavLink>
-          <NavLink to="/login">Login</NavLink>
-        </>
-      )}
+      <div>
+        {isLoggedIn ? (
+          <NavLink to="/contacts">Contacts</NavLink>
+        ) : (
+          <div>
+            <NavLink to="/register">Register</NavLink>
+            <NavLink to="/login">Login</NavLink>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
