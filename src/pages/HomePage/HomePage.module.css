@@ -16,3 +16,8 @@
 .card:active {
   box-shadow: none;
 }
+
+.contactshero {
+  display: flex;
+  justify-content: center;
+}

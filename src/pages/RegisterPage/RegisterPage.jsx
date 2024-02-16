@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
-import { apiRegisterUser } from '../redux/auth/authSlice';
+import { apiRegisterUser } from '../../redux/auth/authSlice';
 
+import css from '../LoginPage/LoginPage.module.css';
 const RegisterPage = () => {
   const dispatch = useDispatch();
 
@@ -14,12 +15,13 @@ const RegisterPage = () => {
   };
 
   return (
-    <div>
+    <div className={css.loginFormContainer}>
       <h1>Register</h1>
-      <form onSubmit={onSubmit}>
-        <label>
+      <form className={css.loginFormGroup} onSubmit={onSubmit}>
+        <label className={css.loginFormlabel}>
           Name:
           <input
+            className={css.loginInputField}
             type="text"
             name="userName"
             placeholder="Sanches"
@@ -27,18 +29,20 @@ const RegisterPage = () => {
             required
           />
         </label>
-        <label>
+        <label className={css.loginFormlabel}>
           Email:
           <input
+            className={css.loginInputField}
             type="email"
             name="userEmail"
             placeholder="Sanches123@ukr.net"
             required
           />
         </label>
-        <label>
+        <label className={css.loginFormlabel}>
           Password:
           <input
+            className={css.loginInputField}
             type="password"
             name="userPassword"
             placeholder="*******"
@@ -46,7 +50,9 @@ const RegisterPage = () => {
             required
           />
         </label>
-        <button type="submit">Sign up</button>
+        <button className={css.loginFormButton} type="submit">
+          Sign up
+        </button>
       </form>
     </div>
   );

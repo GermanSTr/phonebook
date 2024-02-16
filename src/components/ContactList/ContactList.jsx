@@ -19,7 +19,6 @@ const ContactList = () => {
   const isLoading = useSelector(selectContactsIsLoading);
   const error = useSelector(selectContactsError);
   const dispatch = useDispatch();
-  console.log(contacts);
 
   useEffect(() => {
     dispatch(apiGetContact());

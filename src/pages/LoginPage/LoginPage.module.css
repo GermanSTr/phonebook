@@ -1,0 +1,47 @@
+.loginFormContainer {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.loginFormGroup {
+  margin-bottom: 20px;
+}
+
+.loginFormlabel {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.loginInputField {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.loginInputField:focus {
+  border-color: #492963;
+  outline: none;
+}
+
+.loginFormButton {
+  background-color: #492963;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.loginFormButton:hover {
+  background-color: #785892;
+}
+
+.loginFormButton:active {
+  background-color: #785892;
+  transform: translateY(1px);
+}
