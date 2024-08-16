@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, isAnyOf } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const $authInstance = axios.create({
-  baseURL: 'https://connections-api.herokuapp.com/',
+  baseURL: 'https://connections-api.goit.global/',
 });
 const clearToken = () => {
   $authInstance.defaults.headers.common.Authorization = ``;
